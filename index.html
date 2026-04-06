@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paang's Workspace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #4CAF50;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .username {
+            color: #4CAF50;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        
+        .bio {
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .link-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .link-card svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .github-icon {
+            fill: #fff;
+        }
+        
+        .logout-btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: transparent;
+            border: 2px solid #666;
+            color: #666;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            border-color: #ff6b6b;
+            color: #ff6b6b;
+        }
+        
+        .demo-badge {
+            background: #ff9800;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .config-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+        }
+        
+        .config-section h3 {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+        
+        .config-section p {
+            color: #aaa;
+            font-size: 0.9em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .config-section code {
+            background: rgba(0,0,0,0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 10px;
+            border: 1px solid #4CAF50;
+        }
+        
+        .status h4 {
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        
+        .status p {
+            color: #aaa;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="demo-badge">🎭 演示模式</span>
+        
+        <img src="https://avatars.githubusercontent.com/u/XXXXXX?v=4" alt="Avatar" class="avatar" id="avatar">
+        <h1 id="welcomeTitle">Welcome!</h1>
+        <p class="username" id="username">@MQianYan</p>
+        <p class="bio" id="bio">
+            一个热爱技术的开发者<br>
+            专注于Minecraft服务器插件开发<br>
+            喜欢折腾各种有趣的项目
+        </p>
+        
+        <div class="links">
+            <a href="https://github.com/MQianYan" target="_blank" class="link-card">
+                <svg class="github-icon" viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
+            
+            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=XXXXXXXX" target="_blank" class="link-card">
+                📱 QQ联系
+            </a>
+            
+            <a href="https://space.bilibili.com/XXXXXX" target="_blank" class="link-card">
+                📺 B站
+            </a>
+        </div>
+        
+        <div class="status">
+            <h4>✅ 网站运行中</h4>
+            <p>部署时间: 2026-04-06 | 版本: v1.0</p>
+        </div>
+        
+        <div class="config-section">
+            <h3>🔧 部署说明</h3>
+            <p>这是一个静态网页，可以直接部署到Vercel、Netlify等平台。</p>
+            <p>要部署你自己的版本：</p>
+            <p>1. 克隆/下载此项目<br>
+               2. 修改 <code>index.html</code> 中的个人信息<br>
+               3. 使用Vercel或Netlify部署</p>
+            
+            <p style="margin-top: 15px;">
+                <strong style="color: #ffc107;">GitHub OAuth 登录</strong> 需要后端服务配合。<br>
+                如需真实登录功能，建议使用：
+            </p>
+            <p>• <a href="https://vercel.com" style="color: #4CAF50;">Vercel</a> + Next.js + Prisma<br>
+               • <a href="https://supabase.com" style="color: #4CAF50;">Supabase</a> Auth<br>
+               • <a href="https://firebase.google.com" style="color: #4CAF50;">Firebase</a> Auth</p>
+        </div>
+    </div>
+</body>
+</html>
