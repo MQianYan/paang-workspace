@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目下载 - MQianYan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+        }
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .bg-animation::before, .bg-animation::after {
+            content: ''; position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            border-radius: 50%; animation: float 20s ease-in-out infinite;
+        }
+        .bg-animation::before { top: -200px; left: -200px; }
+        .bg-animation::after { bottom: -200px; right: -200px; animation-delay: -10s; }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, 100px) scale(1.1); }
+            50% { transform: translate(0, 200px) scale(1); }
+            75% { transform: translate(-100px, 100px) scale(0.9); }
+        }
+        .navbar { width: 100%; max-width: 1200px; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5em; font-weight: 300; color: white; text-decoration: none; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.95em; transition: all 0.3s ease; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: white; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: white; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .page-title { font-size: 2.5em; font-weight: 300; color: white; text-align: center; margin-bottom: 50px; letter-spacing: 5px; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .project-card {
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 30px; border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+        }
+        .project-card:hover { background: rgba(255,255,255,0.25); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+        .project-icon { font-size: 3em; margin-bottom: 20px; }
+        .project-name { font-size: 1.4em; font-weight: 500; color: white; margin-bottom: 10px; }
+        .project-version { font-size: 0.8em; color: rgba(255,255,255,0.5); margin-bottom: 15px; }
+        .project-desc { font-size: 0.95em; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 20px; }
+        .project-meta { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .meta-item { padding: 5px 12px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 0.8em; color: rgba(255,255,255,0.7); }
+        .download-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 25px; background: rgba(76,175,80,0.8); border-radius: 25px;
+            color: white; text-decoration: none; font-size: 0.95em; transition: all 0.3s ease;
+            border: 1px solid rgba(76,175,80,0.5);
+        }
+        .download-btn:hover { background: rgba(76,175,80,1); transform: scale(1.05); }
+        .project-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .project-date { font-size: 0.8em; color: rgba(255,255,255,0.5); }
+        .github-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9em; transition: color 0.3s ease; }
+        .github-link:hover { color: white; }
+        .stats-section { background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border-radius: 20px; padding: 30px; margin: 50px 0; border: 1px solid rgba(255,255,255,0.2); }
+        .stats-title { font-size: 1.5em; color: white; text-align: center; margin-bottom: 30px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .stat-item .stat-value { font-size: 2.5em; font-weight: 600; color: white; }
+        .stat-item .stat-label { font-size: 0.9em; color: rgba(255,255,255,0.7); margin-top: 5px; }
+        .footer { width: 100%; padding: 40px 20px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9em; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .footer-links a:hover { color: white; }
+        @media (max-width: 768px) {
+            .navbar { padding: 20px; }
+            .nav-links { display: none; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">MQianYan</a>
+        <div class="nav-links">
+            <a href="../index.html">首页</a>
+            <a href="../blog/index.html">博客</a>
+            <a href="index.html" class="active">项目</a>
+            <a href="../about/index.html">关于</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-title">项目下载</h1>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-icon">🔧</div>
+                <div class="project-name">QEquip-Repair</div>
+                <div class="project-version">v1.0.0 | Minecraft 1.20.4</div>
+                <p class="project-desc">Minecraft服务器装备修复插件。支持装备破碎、3秒掉落保护、修复系统（带失败概率）、材料返还等功能。修复了无限刷材料漏洞。</p>
+                <div class="project-meta">
+                    <span class="meta-item">Java 17</span>
+                    <span class="meta-item">Paper API</span>
+                    <span class="meta-item">Maven</span>
+                </div>
+                <a href="https://github.com/MQianYan/QEquip-Repair/releases" target="_blank" class="download-btn">
+                    ⬇️ 下载插件
+                </a>
+                <div class="project-footer">
+                    <span class="project-date">📅 2026-04-06</span>
+                    <a href="https://github.com/MQianYan/QEquip-Repair" target="_blank" class="github-link">📂 GitHub →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <div class="project-name">Paang OpenClaw Bot</div>
+                <div class="project-version">v1.0.0 | Telegram Bot</div>
+                <p class="project-desc">基于Grammy框架开发的Telegram机器人，与OpenClaw深度集成，提供AI对话、文件管理、定时提醒等功能。</p>
+                <div class="project-meta">
+                    <span class="meta-item">Node.js</span>
+                    <span class="meta-item">Grammy</span>
+                    <span class="meta-item">TypeScript</span>
+                </div>
+                <a href="https://github.com/MQianYan/Paang-OpenClaw-Bot" target="_blank" class="download-btn">
+                    ⬇️ 查看项目
+                </a>
+                <div class="project-footer">
+                    <span class="project-date">📅 2026-04-05</span>
+                    <a href="https://github.com/MQianYan/Paang-OpenClaw-Bot" target="_blank" class="github-link">📂 GitHub →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🌐</div>
+                <div class="project-name">Paang Workspace</div>
+                <div class="project-version">v1.0.0 | 静态网站</div>
+                <p class="project-desc">个人主页网站，采用液态玻璃设计风格。集成GitHub统计、实时天气、名言API。部署于GitHub Pages。</p>
+                <div class="project-meta">
+                    <span class="meta-item">HTML/CSS/JS</span>
+                    <span class="meta-item">GitHub Pages</span>
+                    <span class="meta-item">REST API</span>
+                </div>
+                <a href="https://mqianyan.github.io/paang-workspace/" target="_blank" class="download-btn">
+                    🌐 访问网站
+                </a>
+                <div class="project-footer">
+                    <span class="project-date">📅 2026-04-06</span>
+                    <a href="https://github.com/MQianYan/paang-workspace" target="_blank" class="github-link">📂 GitHub →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🎮</div>
+                <div class="project-name">Qbiubong</div>
+                <div class="project-version">开发中 | Minecraft 插件</div>
+                <p class="project-desc">一个有趣的Minecraft服务器插件项目，具体功能待定。正在开发中...</p>
+                <div class="project-meta">
+                    <span class="meta-item">Java</span>
+                    <span class="meta-item">Minecraft</span>
+                    <span class="meta-item">开发中</span>
+                </div>
+                <a href="https://github.com/MQianYan/Qbiubong" target="_blank" class="download-btn">
+                    🔨 关注项目
+                </a>
+                <div class="project-footer">
+                    <span class="project-date">📅 2026-04-05</span>
+                    <a href="https://github.com/MQianYan/Qbiubong" target="_blank" class="github-link">📂 GitHub →</a>
+                </div>
+            </div>
+        </div>
+        <div class="stats-section">
+            <h2 class="stats-title">📊 GitHub 统计数据</h2>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-item">
+                    <div class="stat-value"><span class="loading">--</span></div>
+                    <div class="stat-label">仓库数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value"><span class="loading">--</span></div>
+                    <div class="stat-label">粉丝</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value"><span class="loading">--</span></div>
+                    <div class="stat-label">Star</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value"><span class="loading">--</span></div>
+                    <div class="stat-label">Fork</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://github.com/MQianYan" target="_blank">GitHub</a>
+            <a href="../index.html">首页</a>
+            <a href="../blog/index.html">博客</a>
+            <a href="../about/index.html">关于</a>
+        </div>
+        <p>© 2026 MQianYan. Made with ❤️</p>
+    </footer>
+    <script>
+        async function fetchGitHubStats() {
+            try {
+                const response = await fetch('https://api.github.com/users/MQianYan');
+                const data = await response.json();
+                const reposResponse = await fetch('https://api.github.com/users/MQianYan/repos?sort=updated&per_page=100');
+                const repos = await reposResponse.json();
+                const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+                const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+                document.getElementById('statsGrid').innerHTML = `
+                    <div class="stat-item"><div class="stat-value">${data.public_repos || 0}</div><div class="stat-label">仓库数</div></div>
+                    <div class="stat-item"><div class="stat-value">${data.followers || 0}</div><div class="stat-label">粉丝</div></div>
+                    <div class="stat-item"><div class="stat-value">${totalStars}</div><div class="stat-label">Star</div></div>
+                    <div class="stat-item"><div class="stat-value">${totalForks}</div><div class="stat-label">Fork</div></div>
+                `;
+            } catch (error) { console.error('GitHub API Error:', error); }
+        }
+        document.addEventListener('DOMContentLoaded', fetchGitHubStats);
+    </script>
+</body>
+</html>
