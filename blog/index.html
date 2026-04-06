@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客 - MQianYan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+        }
+        .bg-animation { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .bg-animation::before, .bg-animation::after {
+            content: ''; position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            border-radius: 50%; animation: float 20s ease-in-out infinite;
+        }
+        .bg-animation::before { top: -200px; left: -200px; }
+        .bg-animation::after { bottom: -200px; right: -200px; animation-delay: -10s; }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, 100px) scale(1.1); }
+            50% { transform: translate(0, 200px) scale(1); }
+            75% { transform: translate(-100px, 100px) scale(0.9); }
+        }
+        .navbar { width: 100%; max-width: 1200px; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5em; font-weight: 300; color: white; text-decoration: none; letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.95em; transition: all 0.3s ease; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: white; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: white; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .page-title { font-size: 2.5em; font-weight: 300; color: white; text-align: center; margin-bottom: 50px; letter-spacing: 5px; }
+        .blog-list { display: flex; flex-direction: column; gap: 30px; }
+        .blog-card {
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 35px; border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease; cursor: pointer;
+        }
+        .blog-card:hover { background: rgba(255,255,255,0.25); transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+        .blog-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .blog-card-date { font-size: 0.85em; color: rgba(255,255,255,0.6); }
+        .blog-card-title { font-size: 1.5em; font-weight: 500; color: white; margin-bottom: 15px; line-height: 1.4; }
+        .blog-card-excerpt { font-size: 1em; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 20px; }
+        .blog-card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .blog-card-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tag { padding: 5px 15px; background: rgba(255,255,255,0.15); border-radius: 15px; font-size: 0.8em; color: rgba(255,255,255,0.8); }
+        .read-more { padding: 10px 25px; background: rgba(255,255,255,0.2); border-radius: 20px; color: white; text-decoration: none; font-size: 0.9em; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2); }
+        .read-more:hover { background: rgba(255,255,255,0.35); }
+        .footer { width: 100%; padding: 40px 20px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9em; margin-top: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .footer-links a:hover { color: white; }
+        @media (max-width: 768px) {
+            .navbar { padding: 20px; }
+            .nav-links { display: none; }
+            .blog-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">MQianYan</a>
+        <div class="nav-links">
+            <a href="../index.html">首页</a>
+            <a href="index.html" class="active">博客</a>
+            <a href="../projects/index.html">项目</a>
+            <a href="../about/index.html">关于</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-title">技术博客</h1>
+        <div class="blog-list">
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-card-date">📅 2026-04-06</span>
+                    <span class="blog-card-date">👁️ 128 次阅读</span>
+                </div>
+                <h2 class="blog-card-title">Minecraft服务器插件开发入门指南</h2>
+                <p class="blog-card-excerpt">从零开始学习Bukkit/Spigot插件开发，掌握事件监听、命令注册和数据存储的核心概念。我们将创建一个简单的装备修复插件作为实战练习...</p>
+                <div class="blog-card-footer">
+                    <div class="blog-card-tags">
+                        <span class="tag">Minecraft</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">Bukkit</span>
+                    </div>
+                    <a href="#" class="read-more">阅读更多 →</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-card-date">📅 2026-04-05</span>
+                    <span class="blog-card-date">👁️ 96 次阅读</span>
+                </div>
+                <h2 class="blog-card-title">WSL2 + OpenClaw 打造高效命令行开发环境</h2>
+                <p class="blog-card-excerpt">分享如何配置WSL2开发环境，使用OpenClaw提升终端效率和自动化工作流程。包括代理配置、Telegram机器人集成等实用技巧...</p>
+                <div class="blog-card-footer">
+                    <div class="blog-card-tags">
+                        <span class="tag">WSL2</span>
+                        <span class="tag">OpenClaw</span>
+                        <span class="tag">效率</span>
+                    </div>
+                    <a href="#" class="read-more">阅读更多 →</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-card-date">📅 2026-04-03</span>
+                    <span class="blog-card-date">👁️ 215 次阅读</span>
+                </div>
+                <h2 class="blog-card-title">GitHub Actions 自动化部署实战</h2>
+                <p class="blog-card-excerpt">利用GitHub Actions实现静态网站的自动化构建和部署。通过自动化工作流，省去手动发布的繁琐步骤，实现代码推送即部署...</p>
+                <div class="blog-card-footer">
+                    <div class="blog-card-tags">
+                        <span class="tag">GitHub</span>
+                        <span class="tag">CI/CD</span>
+                        <span class="tag">自动化</span>
+                    </div>
+                    <a href="#" class="read-more">阅读更多 →</a>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-header">
+                    <span class="blog-card-date">📅 2026-04-01</span>
+                    <span class="blog-card-date">👁️ 342 次阅读</span>
+                </div>
+                <h2 class="blog-card-title">Java并发编程：理解CompletableFuture</h2>
+                <p class="blog-card-excerpt">深入理解Java 8引入的CompletableFuture，掌握异步编程的核心概念。学习如何构建非阻塞式的高效应用程序...</p>
+                <div class="blog-card-footer">
+                    <div class="blog-card-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">并发</span>
+                        <span class="tag">异步</span>
+                    </div>
+                    <a href="#" class="read-more">阅读更多 →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://github.com/MQianYan" target="_blank">GitHub</a>
+            <a href="../index.html">首页</a>
+            <a href="../projects/index.html">项目</a>
+            <a href="../about/index.html">关于</a>
+        </div>
+        <p>© 2026 MQianYan. Made with ❤️</p>
+    </footer>
+</body>
+</html>
